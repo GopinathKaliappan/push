@@ -1,9 +1,47 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      Multiply Panda
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        {{selectedNumberIndex}}
+        <ion-card-title>
+          <span
+            *ngFor="let n of numbers[selectedNumberIndex]['dynamicNumbers']; let i = index"
+          >
+              {{n}}
+            <span
+              *ngIf="i !== numbers[selectedNumberIndex]['dynamicNumbers'].length -1"
+            >
+              {{' + '}}
+
+            </span>
+
+          </span>
+          <span> = ?</span>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label>Find The Answer</ion-label>
+      </ion-list-header>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3" let *ngFor="let number of numbers; let i = index"  >
+             <div (click)="this.checkAnswer(i)" class="ion-text-center primary" class="number-box">
+               <div class="inner-number">
+                 {{number.total}}
+                 <div class="tick-span" *ngIf="number.choosen" style="position:absolute; bottom: 5px; right: 30%; color: brown;font-size:15px"> &#10004;</div>
+              </div>
+            </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
