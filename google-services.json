@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "753559123599",
+    "firebase_url": "https://gopi-pwa.firebaseio.com",
+    "project_id": "gopi-pwa",
+    "storage_bucket": "gopi-pwa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753559123599:android:a9ee053ed1fdfad776e2fa",
+        "android_client_info": {
+          "package_name": "com.heppi.webpush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753559123599-ldci9sctol3r5l6js993lq2qrd3gh776.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmyXiZzNYGSepKhPsGLFNArSZAomB92Dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753559123599-n2sapbqq132bv7b0tnnfm2hrmdee1532.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
