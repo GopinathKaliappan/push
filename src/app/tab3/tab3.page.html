@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Multiply Panda
+      Multiply
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -36,9 +36,8 @@
       <ion-row>
         <ion-col size="3" let *ngFor="let number of numbers; let i = index"  >
              <div (click)="this.checkAnswer(i)" class="ion-text-center primary" class="number-box">
-               <div class="inner-number">
+               <div class="inner-number" [ngClass="{ 'choosen': number.choosen }"]>
                  {{number.total}}
-                 <div class="tick-span" *ngIf="number.choosen" style="position:absolute; bottom: 5px; right: 30%; color: brown;font-size:15px"> &#10004;</div>
               </div>
             </div>
         </ion-col>

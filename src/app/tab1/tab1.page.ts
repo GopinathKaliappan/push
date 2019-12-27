@@ -15,10 +15,12 @@ export class Tab1Page {
   totalNumberPairs: any;
   digit: any;
   sign: any;
+  resultText: any;
+  errorText: any;
 
   constructor() {
     this.selectedNumberIndex = 0;
-    this.totalNumberPairs = 18;
+    this.totalNumberPairs = 3;
     this.digit = 3;
     this.sign = 'plus';
 
@@ -30,24 +32,44 @@ export class Tab1Page {
       this.totalNumberPairs,
       this.digit
     );
-    this.selectedNumberIndex = Math.round(Math.random()* (this.numbers.filter(num=> num.choosen !== true).length));
+    this.selectedNumberIndex = Math.round(Math.random()* (this.numbers.filter(num=> num.choosen !== true).length -1));
+    this.changeToAbs('selectedNumberIndex');
   }
 
   changeNumber() {
-    this.selectedNumberIndex = Math.round(Math.random() * this.totalNumberPairs);
+    if(this.numbers.filter(item=> item.choosen).length === this.numbers.length) {
+      return false;
+    }
+    this.selectedNumberIndex = Math.round(Math.random() * this.totalNumberPairs - 1 );
+    this.changeToAbs('selectedNumberIndex');
     do {
-        this.selectedNumberIndex = Math.round(Math.random() * this.totalNumberPairs);
+        this.selectedNumberIndex = Math.round(Math.random() * this.totalNumberPairs) -1;
+        this.changeToAbs('selectedNumberIndex');
         console.log(this.selectedNumberIndex);
     }
+
     while(this.numbers[this.selectedNumberIndex].choosen);
+  }
+
+  changeToAbs(key) {
+    this[key] = Math.abs(this[key]);
   }
 
   checkAnswer(index){
       this.numbers[index]['choosen'] = this.numbers[index]['total'] === this.numbers[this.selectedNumberIndex]['total'];
       if(this.numbers[index]['choosen']) {
-        this.changeNumber()
+        this.resultText = 'Great!';
+        setTimeout(()=> {
+          this.changeNumber();
+          this.resultText = '';
+        }, 3000);
+
       } else {
         console.log("Wrong Answer");
+        this.errorText = 'Try Again';
+        setTimeout(()=> {
+          this.errorText = '';
+        }, 3000);
       }
   }
 }

@@ -34,7 +34,8 @@ export class CalculationService {
 
             realNumbers.push({
               dynamicNumbers,
-              total
+              total,
+              choosen: false
             })
         }
         return realNumbers;
