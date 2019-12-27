@@ -1,3 +1,13 @@
+@font-face {
+   font-family: 'customfont';
+   src: url('./assets/fonts/zootopia.ttf');
+   font-weight: normal;
+   font-style: normal;
+ }
+
+ * {
+   // font-family: 'customfont';
+ }
 .number-box {
   font-size: 30px;
   text-align: center;

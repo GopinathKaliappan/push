@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 // Custom Services
 import { CalculationService } from '../services/calculation.service';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -18,7 +19,9 @@ export class Tab1Page {
   resultText: any;
   errorText: any;
 
-  constructor() {
+  constructor(
+    private nativeAudio: NativeAudio
+  ) {
     this.selectedNumberIndex = 0;
     this.totalNumberPairs = 3;
     this.digit = 3;
@@ -34,6 +37,17 @@ export class Tab1Page {
     );
     this.selectedNumberIndex = Math.round(Math.random()* (this.numbers.filter(num=> num.choosen !== true).length -1));
     this.changeToAbs('selectedNumberIndex');
+
+    this.nativeAudio.preloadSimple('correct', 'assets/sounds/pop.mp3').then( this.success,this.error );
+    this.nativeAudio.preloadSimple('wrong', 'path/to/file.mp3').then(this.success, this.error);
+
+
+  }
+  success() {
+    console.log("success")
+  }
+  error() {
+    console.log("success")
   }
 
   changeNumber() {
@@ -59,6 +73,7 @@ export class Tab1Page {
       this.numbers[index]['choosen'] = this.numbers[index]['total'] === this.numbers[this.selectedNumberIndex]['total'];
       if(this.numbers[index]['choosen']) {
         this.resultText = 'Great!';
+        this.nativeAudio.play('correct').then(this.success, this.error);
         setTimeout(()=> {
           this.changeNumber();
           this.resultText = '';
@@ -66,6 +81,7 @@ export class Tab1Page {
 
       } else {
         console.log("Wrong Answer");
+        this.nativeAudio.play('correct').then(this.success, this.error);
         this.errorText = 'Try Again';
         setTimeout(()=> {
           this.errorText = '';
